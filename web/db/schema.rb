@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013211354) do
+ActiveRecord::Schema.define(version: 20171013234357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.string "source"
+    t.string "source_uri"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "content"
   end
 
   create_table "placements", force: :cascade do |t|
@@ -38,6 +39,8 @@ ActiveRecord::Schema.define(version: 20171013211354) do
     t.integer "ranking"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "text_en"
+    t.string "text_cs"
   end
 
 end

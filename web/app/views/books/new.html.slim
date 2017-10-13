@@ -4,10 +4,16 @@
     .page-header
       h1 Read a Book!
 
-    form.form-inline#new-book
+    = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
       .form-group
-        input.form-control.input-lg name='book_uri' placeholder='Link to text, ePub, PDF, ...'
+        = f.text_field :source_uri, class: 'form-control input-lg', placeholder: 'Link to text, ePub, PDF, ...'
+
+      .form-group
+        input.btn.btn-lg.btn-primary type='submit' value='Show me the Vocabulary'
+
+    p.claim
+      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+      ' ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco
+      ' laboris nisi ut aliquip ex ea commodo
 
   .col-md-7
-
-

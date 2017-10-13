@@ -1,0 +1,19 @@
+
+.fluid
+  .col-md-2
+  .col-md-8
+    .page-header
+      h1 Your Vocabulary
+
+      table
+        tbody
+          @words.each.with_index do |word,i|
+            tr
+              th = i
+              td = word.text_en
+              td = word.text_cs
+
+    p.claim
+      ' Learn those words because you will need them to read #{@book.name}
+  .col-md-2
+

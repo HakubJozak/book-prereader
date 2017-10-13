@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  
+  resources :books, only: [ :new, :create, :show ]
 
-  get 'books/create'
-
-  get 'books/new'
-
+  # post 'books'
+  # get 'books/new'
   root to: 'books#new'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

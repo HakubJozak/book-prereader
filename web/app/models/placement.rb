@@ -1,0 +1,2 @@
+class Placement < ApplicationRecord
+end

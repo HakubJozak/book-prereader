@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  margin: 0;
+
+  background-image: image-url('nohy.jpg');
+  // https://source.unsplash.com/1600x900/?nature,water
+  // https://images.unsplash.com/photo-1502700807168-484a3e7889d0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1600&h=900&fit=crop&s=b9cb0d004f2467dcd857ace7caad9ddf
+}
+
+form#new-book {
+
+  input {
+      width: 20em;
+  }
+
+}
+
+
+#content {
+  display: flex;
+  align-items: center;
+
+  min-height: 500px;
+  color: black;
+  font-size: 25px;
+}

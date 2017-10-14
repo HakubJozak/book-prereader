@@ -1,29 +1,32 @@
 #content
   .col-md-4
     h1 Dibook. Read a book!
-    ul.list-inline
-        li
-            a href="#link" Post a link
-        li
-            a href="#text" Paste a text
-        li
-            a href="#file" Import a file
+    ul.nav.nav-tabs
+      li
+        a href="#link" role='tab' Link 
+      li.active
+        a href="#text" role='tab' Text
+      li
+        a href="#file" role='tab' File
+
     div.tab-content
         div.tab-pane.fade role="tabpanel id="link"
-            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
+          = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
             .form-group
-                = f.text_field :source_uri, class: 'form-control input-lg', placeholder: 'Link to text, ePub, PDF, ...'
+              = f.text_field :source_uri, class: 'form-control input-lg', placeholder: 'Link to text, ePub, PDF, ...'
         div.tab-pane.fade role="tabpanel id="text"
-            textarea
+          .form-group
+            = f.textarea :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
         div.tab-pane.fade role="tabpanel id="file"
-
+          .form-group
+            = f.textarea :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
 
     .form-group
         input.btn.btn-lg.btn-primary type='submit' value='Show me the vocabulary'
 
     p.claim
-      b The best word we found so far: 
-      br  
-      ' oh-what-a-wicked-world-this-is-and-how-i-wish-i-could-do-something-to-
+      b The best word we found so far:
+      br
+      ' oh-what-a-wicked-world-this-is-and-how-i-wish-i-could-do-something
 
   .col-md-7

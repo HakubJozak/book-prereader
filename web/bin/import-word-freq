@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+i = 0
+
+
+File.new('../data/word_freq.csv').read.lines do |line|
+  _, dictionary_id, text, frequency = line.split(',')
+
+  w = Word.find_or_create_by(text_en: text)
+  i += 1
+  puts "#{i} - #{w.text_en}"
+
+  w.corpus_frequency = frequency
+  w.dictionary_id    = dictionary_id
+  w.save(validate: false)
+end

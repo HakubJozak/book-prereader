@@ -48,7 +48,7 @@ class Book < ApplicationRecord
   def download_content!
     case source_uri
     when %r{http://www.gutenberg.org/files.*}
-      r = ::Reader::Gutenberg.new(source_uri)
+      r = ::Reader::Gutenberg.new(uri: source_uri)
       self.name = r.name
       self.content = r.content
     else

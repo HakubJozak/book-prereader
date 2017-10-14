@@ -11,6 +11,19 @@ class Word < ApplicationRecord
     save!
   end
 
+  def definition
+    out = `dict -d wn #{text_en}`
+
+    if out.present?
+      out.gsub! /^From WordNet.*$/,''
+      out.gsub! /\d+ definitions? found/, ''
+      out.strip!
+      out.lines[1..-1].join("\n")
+    else
+      nil
+    end
+  end
+
   STOPWORDS =
     [ "a",
       "about",

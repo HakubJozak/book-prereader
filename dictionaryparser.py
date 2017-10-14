@@ -1,9 +1,10 @@
 import re
+import os
+import sys
 
-with open('teststring2', 'rt') as f:
-	string = f.read()
-
-print (string)
+query = sys.argv[1]
+cmd = "dict -d wn %s" % query
+string = os.popen(cmd).read()
 
 string = string.split("2:")[0]
 dictionary = ''
@@ -15,7 +16,3 @@ string = string.split("1:")[1]
 string = string.replace("\n", "")
 string = string.replace("  ", "")
 print (name + ':' + string)
-
-
- 
-

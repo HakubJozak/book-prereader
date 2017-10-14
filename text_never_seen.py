@@ -1,8 +1,8 @@
 from gensim import corpora, models
 
-dictionary = corpora.Dictionary.load('dict10k.dict')
-corpus = corpora.MmCorpus('corpus10k.mm')
-tfidf = models.TfidfModel.load('tfidf_10k')
+dictionary = corpora.Dictionary.load('data/dict10k.dict')
+corpus = corpora.MmCorpus('data/corpus10k.mm')
+tfidf = models.TfidfModel.load('data/tfidf_10k')
 # print(corpus)
 # print(dictionary.token2id)
 
@@ -35,6 +35,7 @@ freqlist = sorted(freqlist, key=itemgetter(2))
 
 print(freqlist)
 import pandas as pd
-
 df = pd.DataFrame(freqlist)
+df = df[df[2] != 1.0]
+df.to_csv('data/word_freq.csv', sep=',', header=None)
 print("bla")

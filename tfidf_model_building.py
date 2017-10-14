@@ -34,14 +34,13 @@ def is_a_verb(tag):
         return 'n'
 
 
-file = 'eng_wikipedia_2016_10K-sentences.txt'
+file = 'eng_wikipedia_2016_100K-sentences.txt'
 with open(file, encoding="utf8") as f:
     read_data = f.read()
 f.close()
 read_data = read_data.lower()
 sentences = [s.strip() for s in read_data.splitlines()]
 texts = []
-
 for sen in sentences:
     tokens = nltk.word_tokenize(sen)
     filtered_words = [word for word in tokens if word not in stopwords.words('english')]
@@ -52,15 +51,15 @@ for sen in sentences:
         if not is_to_removed(i):
             words.append(wordnet_lemmatizer.lemmatize(i[0], pos=is_a_verb(i[1])))
     texts.append(words)
-# print(words)
-dictionary = corpora.Dictionary(texts)
+    # print(words)
+    dictionary = corpora.Dictionary(texts)
 
-corpus = [dictionary.doc2bow(text) for text in texts]
-# print(corpus)
-tfidf = models.TfidfModel(corpus)
-corpus_tfidf = tfidf[corpus]
-tfidf.save('tfidf_10k')
-corpora.MmCorpus.serialize('corpus10k.mm', corpus)
-dictionary.save('dict10k.dict')
+    corpus = [dictionary.doc2bow(text) for text in texts]
+    # print(corpus)
+    tfidf = models.TfidfModel(corpus)
+    corpus_tfidf = tfidf[corpus]
+    tfidf.save('tfidf_100k')
+    corpora.MmCorpus.serialize('corpus100k.mm', corpus)
+    dictionary.save('dict100k.dict')
 
-# dictionary.token2id
+    # dictionary.token2id

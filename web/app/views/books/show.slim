@@ -10,7 +10,7 @@
 
       table.table
         tbody
-          - @book.placements.includes(:word).limit(100).order(frequency: :desc).each.with_index do |p,i|
+          - @book.placements.includes(:word).limit(100).order(frequency: :asc).each.with_index do |p,i|
             tr
               th = i
               td = p.text_en

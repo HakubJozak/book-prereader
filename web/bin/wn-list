@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+
+%w( boat dog man woman child list array city ).each do |w|
+  system "echo #{} dict -d wn #{w}"
+end

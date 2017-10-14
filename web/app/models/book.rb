@@ -7,12 +7,16 @@ class Book < ApplicationRecord
   has_many :words, through: :placements
 
   before_create :download_content
+
+  def name
+    read_attribute(:name) || 'Untitled'
+  end
   
   def analyze!
     tokens = []
 
     # TODO - use Python for lemmatization
-    content.scan(/\w+|-/).each do |w|
+    self.content.scan(/\w+|-/).each do |w|
       tokens << w.downcase
     end
 
@@ -29,16 +33,16 @@ class Book < ApplicationRecord
   private
 
   def download_content
-    unless content.present?
+    return if self.content.present?
+
+    case source_uri
+    when %r{http://www.gutenberg.org/files.*}
+      r = ::Reader::Gutenberg.new(source_uri)
+      self.name = r.name
+      self.content = r.content
+    else
       self.content = open(source_uri).read
     end
-
-    # (/\s*|,|\.|!|\?|-|;/)
-    tokens = self.content.split.map(&:downcase).uniq
-
-
-# each do |w|
-#       Word.find_or_create_by(text_en: w)
-#     end
   end
+
 end

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class WordTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'definition' do
+    w = Word.create(text_en: 'dog')
+  end
 end

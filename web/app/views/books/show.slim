@@ -8,13 +8,14 @@
       p.claim
         ' Learn those words because you will need them to read #{@book.name}
 
-      table
+      table.table
         tbody
-          = @words.each.with_index do |word,i|
+          - @book.placements.includes(:word).limit(100).order(frequency: :desc).each.with_index do |p,i|
             tr
               th = i
-              td = word.text_en
-              td = word.text_cs
+              td = p.text_en
+              td = p.text_cs
+              td = p.frequency
 
 
   .col-md-2

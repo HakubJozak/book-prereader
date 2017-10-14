@@ -1,11 +1,29 @@
 require 'open-uri'
 
+
 class Book < ApplicationRecord
+
+  has_many :placements
+  has_many :words, through: :placements
 
   before_create :download_content
   
-  def words
-    Word.where(text_en: content.strip.split
+  def analyze!
+    tokens = []
+
+    # TODO - use Python for lemmatization
+    content.scan(/\w+|-/).each do |w|
+      tokens << w.downcase
+    end
+
+    word_count = tokens.size.to_f
+    f = tokens.frequency
+
+    Word.where(text_en: tokens).all.each do |word|
+      Placement.create(word: word,
+                       book: self,
+                       frequency: f[word.text_en] / word_count)
+    end
   end
 
   private

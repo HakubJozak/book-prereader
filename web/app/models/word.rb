@@ -1,6 +1,10 @@
 class Word < ApplicationRecord
   validates :text_en, presence: true
 
+  has_many :placements
+  has_many :books, through: :placements
+
+
   def translate!
     out = `echo #{text_en} | translate-bin -s google -f en -t cs`
     self.text_cs = out.gsub(/.*>/,'').strip

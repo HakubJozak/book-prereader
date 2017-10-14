@@ -18,15 +18,15 @@ class BookTest < ActiveSupport::TestCase
   end
 
   test 'holmes' do
-    Book.create(source_uri: 'http://www.gutenberg.org/cache/epub/1661/pg1661.txt')
+    Book.create(source_uri: 'http://www.gutenberg.org/cache/epub/1661/pg1661.txt').vocabulary
   end
 
   test 'alice' do
-    Book.create(source_uri: 'http://www.gutenberg.org/files/11/11-0.txt')
+    Book.create(source_uri: 'http://www.gutenberg.org/files/11/11-0.txt').vocabulary
   end
 
   test 'huckleberry' do
-    Book.create(source_uri: 'http://www.gutenberg.org/files/76/76-0.txt')    
+    Book.create(source_uri: 'http://www.gutenberg.org/files/76/76-0.txt').vocabulary
   end
 
 end

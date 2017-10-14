@@ -28,16 +28,23 @@ class Book < ApplicationRecord
 
     groups = words.group_by(&:known)
 
-
     [
-      groups[false].sort { |a,b| b.tfidf <=> a.tfidf },
-      groups[nil].sort { |a,b| b.tfidf <=> a.tfidf },
-      groups[true].sort { |a,b| b.tfidf <=> a.tfidf }
+      sorted(groups[false]),
+      sorted(groups[nil]),
+      sorted(groups[true])
     ].flatten
   end
   
 
   private
+
+  def sorted(group)
+    if group
+      group.sort { |a,b| b.tfidf <=> a.tfidf }
+    else
+      []
+    end
+  end
 
   def prepare_tokens!
     if content.blank?

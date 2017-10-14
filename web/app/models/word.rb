@@ -6,6 +6,7 @@ class Word < ApplicationRecord
 
   # transient attribute used for concrete book
   attr_accessor :frequency
+  attr_accessor :tfidf  
 
   def translate!
     out = `echo #{text_en} | translate-bin -s google -f en -t cs`

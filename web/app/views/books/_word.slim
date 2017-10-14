@@ -1,8 +1,10 @@
 = content_tag :tr, id: dom_id(word), class: word_class(word) do
   th = word.text_en
   td = word.text_cs
-  td 
-    pre = word.definition
+  td = word.tfidf
+  td = word.frequency
+  / td 
+  /  pre = word.definition
   td    
     .btn-group
       = link_to word, remote: true, class: 'btn btn-success', title: 'Yes', 'data-method': 'put', 'data-params': 'known=t'

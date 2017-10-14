@@ -14,30 +14,19 @@ class Book < ApplicationRecord
   def name
     read_attribute(:name) || 'Untitled'
   end
-  
+
   def vocabulary
-    placements.includes(:word).limit(100).order(frequency: :asc)    
-  end
+    important_words = tfidf(self.tokens.join(' '))
 
-  # def analyze!
-  #   tokens = []
-
-  #   word_count = tokens.size.to_f
-  #   f = tokens.frequency
-
-  #   # Word.where(text_en: self.tokens).all.each do |word|
-  #   #   Placement.create(word: word,
-  #   #                    book: self,
-  #   #                    frequency: f[word.text_en] / word_count)
-  #   # end
-  # end
-  def vocabulary
     total = tokens.count.to_f
     f = tokens.frequency
 
-    Word.where(text_en: self.tokens).each do |w|
+    words = Word.where(text_en: important_words.keys).each do |w|
       w.frequency = f[w.text_en] / total
+      w.tfidf = important_words[w.text_en]
     end
+
+    words.sort { |a,b| b.tfidf <=> a.tfidf }
   end
   
 

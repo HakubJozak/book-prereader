@@ -1,7 +1,37 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'open-uri'
+
+
+
+def create_words
+  three_men_in_a_boat = 'http://www.gutenberg.org/files/308/308-0.txt'
+  text = open(three_men_in_a_boat).read
+
+  tokens = []
+
+  text.scan(/\w+|-/) do |s|
+    tokens << s.downcase
+  end
+
+  tokens.uniq!.each_with_index do |str,i|
+    puts i if i % 100 == 0
+    Word.create(text_en: str)  
+  end
+
+  puts "Inserted #{Word.count} words."
+end
+
+def translate_words
+  Word.where(text_cs: nil).each.with_index do |w,i|
+    puts i if i % 100 == 0
+    w.translate!
+  end
+end
+
+def cleanup_words
+  Word.where(text_en: STOPWORDS).delete_all
+end
+
+# Word.delete_all
+# create_words
+#cleanup_words
+translate_words

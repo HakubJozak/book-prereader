@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :books, only: [ :new, :create, :show ]
+  get 'words/update'
 
+  resources :books, only: [ :new, :create, :show ]
+  resources :words
+  
   # post 'books'
   # get 'books/new'
   root to: 'books#new'

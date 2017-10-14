@@ -17,18 +17,7 @@
           th Do you know this word?
       tbody
         - @book.vocabulary.each.with_index do |w,i|
-          tr
-            th = w.text_en
-            td = w.text_cs
-            td 
-              pre = w.definition
-            td    
-              .btn-group
-                a.btn.btn-success title='No'
-                  i.fa-check.fa
-
-                a.btn.btn-default title='Yes'
-                  i.fa-times.fa
+          = render 'word', word: w
 
   .col-md-2
 

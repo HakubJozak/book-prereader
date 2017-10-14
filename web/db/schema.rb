@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014122054) do
+ActiveRecord::Schema.define(version: 20171014152741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20171014122054) do
     t.string "text_cs"
     t.integer "dictionary_id"
     t.integer "corpus_frequency"
+    t.boolean "known"
   end
 
 end

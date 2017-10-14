@@ -16,6 +16,8 @@
 #= require bootstrap-sprockets
 #= require_tree .
 
+
+
 $(document).ready ->
   $('#first-tab').tab('show')
   # $('[data-toggle="popover"]').popover({ html: 'true', trigger: 'hover', placement: 'bottom' })

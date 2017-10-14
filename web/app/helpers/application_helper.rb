@@ -8,4 +8,12 @@ module ApplicationHelper
       w.definition
     end
   end
+
+  def word_class(w)
+    if w.known?
+      'success'
+    elsif w.known == false
+      'danger'
+    end
+  end
 end

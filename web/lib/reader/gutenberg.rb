@@ -4,6 +4,8 @@ require 'open-uri'
 module Reader
   class Gutenberg
     START_REGEXP = %r{^.*\*\*\*START OF THE PROJECT GUTENBERG EBOOK (.*)\*\*\*}
+    END_REGEXP   = %r{^.*\*\*\*END OF THE PROJECT GUTENBERG EBOOK (.*)\*\*\*} 
+
     attr_reader :name, :content
 
     def initialize(uri)
@@ -14,9 +16,10 @@ module Reader
     private
 
     def parse!
-      m = raw.match(START_REGEXP)
-      @name = m[1]
-      @content = raw[m.end(0)..-1]
+      from = raw.match(START_REGEXP)
+      @name = from[1]
+      to = raw.match(END_REGEXP)
+      @content = raw[from.end(0)..to.begin(0)]
     end
 
     def raw

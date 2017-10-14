@@ -23,5 +23,5 @@ flatten = lambda l: [item for sublist in l for item in sublist]
 
 with open(filename, 'rt') as f:
     text = f.read()
-    strings = flatten(tfi(text))
+    strings = (tfi(text))
     print(json.dumps(strings))

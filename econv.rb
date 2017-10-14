@@ -10,27 +10,49 @@ require 'epub/parser'
 
 
 
-result = {}
-result['dog'] = 42
-result.to_json
+#result = {}
+#result['dog'] = 42
+#result.to_json
 
-[ { text: 'dog', frequency: '55' } ].to_json
+#[ { text: 'dog', frequency: '55' } ].to_json
 
-
-require 'epub/parser'
+text = ""
 
 book = EPUB::Parser.parse('test2.epub')
-book.metadata.titles # => Array of EPUB::Publication::Package::Metadata::Title. Main title, subtitle, etc...
-book.metadata.title # => Title string including all titles
-book.metadata.creators # => Creators(authors)
 book.each_page_on_spine do |page|
-  page.media_type # => "application/xhtml+xml"
-  page.entry_name # => "OPS/nav.xhtml" entry name in EPUB package(zip archive)
-  page.read # => raw content document
-  page.content_document.nokogiri # => Nokogiri::XML::Document. The same to Nokogiri.XML(page.read)
+	page.read
+	page.content_document.nokogiri
 
-  puts page.content_document.nokogiri.search('//text()').map(&:text)
-  
-  # do something more
-  #    :
+ 	text = page.content_document.nokogiri.search('//text()').map(&:text)
+#	words = text.split(/\W+/)
+#puts text.inspect
+
+
+#puts text
+words = text.join(' ').split(/\W+/)
+
+#result = Hash.new(0)
+#words.each { |word| result[word] += 1 }
+
+#puts [ {text: word, frequency: result[word]} ].to_json
+
+#new.sort{|a,b| a[1]<=>b[1]}.each { |elem|
+#	puts "\"#{elem[0]}\" has #{elem[1]} occurrences"
+#}
+
+
+h = Hash.new
+words.each { |w|
+	if h.has_key?(w)
+		h[w] = h[w] + 1
+	else
+		h[w] = 1
 end
+}
+
+
+h.sort{|a,b| a[1]<=>b[1]}.each { |elem|
+	puts "text:#{elem[0]}, frequency: #{elem[1]} "
+}
+end
+

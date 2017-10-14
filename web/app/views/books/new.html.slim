@@ -11,18 +11,26 @@
         li
           a href="#file" role='tab' data-toggle='tab' File
 
-      = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
+      = form_for @book, class: 'form-horizontal', id: 'new-book' do |f|
         .tab-content
           .tab-pane role="tabpanel" id="link"
             .form-group
               = f.text_field :source_uri, class: 'form-control input-lg', placeholder: 'Link to text, ePub, PDF, ...'
+            .form-group
+              = analyze_button(f)
 
           .tab-pane role="tabpanel" id="text"
             .form-group
               = f.text_area :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse', rows: 5
+            .form-group
+              = analyze_button(f)
+
           .tab-pane role="tabpanel" id="file"
             .form-group
-            = f.file_field :file, type: :file, class: 'form-control input-lg', placeholder: 'File you want to analyse'
+              = f.file_field :file, type: :file, class: 'form-control input-lg', placeholder: 'File you want to analyse'
+            .form-group
+              = analyze_button(f)
+
 
     p.claim
       b The best word we found so far:

@@ -3,9 +3,13 @@ import sys
 from operator import itemgetter
 from gensim import corpora, models
 
-dictionary = corpora.Dictionary.load('data/dict100k.dict')
-corpus = corpora.MmCorpus('data/corpus100k.mm')
-tfidf = models.TfidfModel.load('data/tfidf_100k')
+# dictionary = corpora.Dictionary.load('data/dict100k.dict')
+# corpus = corpora.MmCorpus('data/corpus100k.mm')
+# tfidf = models.TfidfModel.load('data/tfidf_100k')
+
+dictionary = corpora.Dictionary.load('data/dict1M.dict')
+corpus = corpora.MmCorpus('data/corpus1M.mm')
+tfidf = models.TfidfModel.load('data/tfidf_1M')
 
 
 def tfi(new_doc):

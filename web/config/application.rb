@@ -3,6 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 require './lib/reader/utils'
 require './lib/reader/gutenberg'
+require './lib/reader/epub'
 
 
 

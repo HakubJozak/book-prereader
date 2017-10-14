@@ -20,6 +20,7 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'bootstrap-sass' #, '~> 3.3.6'
+gem 'epub-parser'
 
 
 group :development, :test do

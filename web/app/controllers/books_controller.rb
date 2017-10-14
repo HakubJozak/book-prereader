@@ -14,7 +14,8 @@ class BooksController < ApplicationController
       @book = Book.create(content: content)
       redirect_to @book
     elsif file.present?
-      flash.error 'Not implemented'
+      r = ::Reader::Epub.new(file.path)
+      @book = Book.create(content: r.content, name: r.name)
       redirect_to @book
     end
   end
@@ -31,6 +32,10 @@ class BooksController < ApplicationController
 
   def uri
     book_params[:source_uri]
+  end
+
+  def file
+    book_params[:file]    
   end
 
   def book_params

@@ -12,7 +12,7 @@
           a href="#file" role='tab' data-toggle='tab' File
         li
           a href="#recent" role='tab' data-toggle='tab' 
-            ' Recent Documents
+            ' Recent
 
       = form_for @book, class: 'form-horizontal', id: 'new-book' do |f|
         .tab-content
@@ -35,7 +35,7 @@
               = analyze_button(f)
           .tab-pane role="tabpanel" id="recent"
             ul.recent
-              - Book.find(38,39,40).each do |b|
+              - Book.find(38,39,40,25,28,29,30,42).each do |b|
                 li = link_to b.name, book_path(b)
 
     p.claim

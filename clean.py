@@ -47,7 +47,9 @@ def pre_process_text(intput_text):
     return texts
 
 
+filename = sys.argv[1]
 
-with open('a.txt','rt') as f:
+
+with open(filename,'rt') as f:
   text = f.read()
-  print(pre_process_text(text))
+  print(pre_process_text(text)[0])

@@ -9,6 +9,7 @@ class BooksController < ApplicationController
   def create
     if uri.present?
       @book = Book.create(source_uri: uri)
+      redirect_to @book
     elsif content.present?
       @book = Book.create(content: content)
       redirect_to @book

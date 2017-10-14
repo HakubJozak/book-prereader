@@ -24,6 +24,11 @@ class BookTest < ActiveSupport::TestCase
   test 'alice' do
     Book.create(source_uri: 'http://www.gutenberg.org/files/11/11-0.txt')
   end
+
+  test 'huckleberry' do
+    Book.create(source_uri: 'http://www.gutenberg.org/files/76/76-0.txt')    
+  end
+
 end
 
 

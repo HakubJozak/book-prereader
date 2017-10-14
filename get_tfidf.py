@@ -14,7 +14,10 @@ def tfi(new_doc):
     array = []
     for i in tf_vec:
         # print(dictionary[i[0]] + " " + str(i[1]))
-        array.append({dictionary[i[0]]: i[1]})
+        word = dictionary[i[0]]
+        rank = i[1] * len(word) * len(word)
+        if len(word) > 4:
+            array.append({ word: rank})
     return array
 
 

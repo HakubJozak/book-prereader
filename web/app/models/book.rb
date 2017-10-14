@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   before_create :download_content
   
   def words
-    content.strip.split
+    Word.where(text_en: content.strip.split
   end
 
   private
@@ -17,7 +17,7 @@ class Book < ApplicationRecord
 
     # (/\s*|,|\.|!|\?|-|;/)
     tokens = self.content.split.map(&:downcase).uniq
-    require 'pry' ; binding.pry
+
 
 # each do |w|
 #       Word.find_or_create_by(text_en: w)

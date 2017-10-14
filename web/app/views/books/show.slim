@@ -13,13 +13,15 @@
         tr
           th English
           th Czech
+          th Definition  
           th Do you know this word?
       tbody
-        - @book.vocabulary.each.with_index do |p,i|
+        - @book.vocabulary.each.with_index do |w,i|
           tr
-            th = p.text_en
-            td = p.text_cs
-            td = simple_format p.definition
+            th = w.text_en
+            td = w.text_cs
+            td 
+              pre = w.definition
             td 
               .btn-group
                 a.btn.btn-success

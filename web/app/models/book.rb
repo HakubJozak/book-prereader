@@ -9,9 +9,6 @@ class Book < ApplicationRecord
   # not implemented
   attr_reader :file
 
-  has_many :placements
-  has_many :words, through: :placements
-
   before_create :prepare_tokens!
 
   def name
@@ -22,18 +19,27 @@ class Book < ApplicationRecord
     placements.includes(:word).limit(100).order(frequency: :asc)    
   end
 
-  def analyze!
-    tokens = []
+  # def analyze!
+  #   tokens = []
 
-    word_count = tokens.size.to_f
+  #   word_count = tokens.size.to_f
+  #   f = tokens.frequency
+
+  #   # Word.where(text_en: self.tokens).all.each do |word|
+  #   #   Placement.create(word: word,
+  #   #                    book: self,
+  #   #                    frequency: f[word.text_en] / word_count)
+  #   # end
+  # end
+  def vocabulary
+    total = tokens.count.to_f
     f = tokens.frequency
 
-    Word.where(text_en: self.tokens).all.each do |word|
-      Placement.create(word: word,
-                       book: self,
-                       frequency: f[word.text_en] / word_count)
+    Word.where(text_en: self.tokens).each do |w|
+      w.frequency = f[w.text_en] / total
     end
   end
+  
 
   private
 

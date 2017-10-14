@@ -21,8 +21,11 @@ def create_words
 end
 
 def translate_words
-  Word.where(text_cs: nil).each.with_index do |w,i|
-    puts i if i % 100 == 0
+  scope = Word.where(text_cs: nil)
+  total = scope.count
+
+  scope.each.with_index do |w,i|
+    puts "#{i}/#{total}" if i % 100 == 0
     w.translate!
   end
 end

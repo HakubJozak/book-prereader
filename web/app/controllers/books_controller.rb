@@ -16,14 +16,10 @@ class BooksController < ApplicationController
       flash.error 'Not implemented'
       redirect_to @book
     end
-
-    @book.analyze!
-
   end
 
   def show
     @book = Book.find(params[:id])
-    @words = @book.words
   end
 
   private

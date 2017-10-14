@@ -34,8 +34,11 @@ body.books-new {
       align-items: center;
       min-height: 500px;
       color: black;
-      font-size: 25px;
 
+      .nav-tabs {
+        font-size: 18px;
+      }
+      
       .tab-content {
           bakcground: white;  
       }

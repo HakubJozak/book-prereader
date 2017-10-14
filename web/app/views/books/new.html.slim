@@ -3,31 +3,26 @@
     h1 Dibook. Read a book!
 
     div  
-      ul.nav.nav-tabs
-        li.active
-          a href="#link" role='tab' data-toggle='tab' Link
+      ul.nav.nav-tabs role='tablist'
+        li
+          a href="#link" role='tab' data-toggle='tab' id='first-tab' Link
         li
           a href="#text" role='tab' data-toggle='tab' Text
         li
           a href="#file" role='tab' data-toggle='tab' File
 
-      .tab-content
-        .tab-pane.in role="tabpanel" id="link"
-          .form-group
-            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
+      = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
+        .tab-content
+          .tab-pane role="tabpanel" id="link"
+            .form-group
               = f.text_field :source_uri, class: 'form-control input-lg', placeholder: 'Link to text, ePub, PDF, ...'
 
-        .tab-pane.fade role="tabpanel" id="text"
-          .form-group
-            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
-              = f.text_area :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
-
-        .tab-pane.fade role="tabpanel" id="file"
-          .form-group
-            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
-              = f.file_field :file, type: :file, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
-
-
+          .tab-pane role="tabpanel" id="text"
+            .form-group
+              = f.text_area :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse', rows: 5
+          .tab-pane role="tabpanel" id="file"
+            .form-group
+            = f.file_field :file, type: :file, class: 'form-control input-lg', placeholder: 'File you want to analyse'
 
     p.claim
       b The best word we found so far:

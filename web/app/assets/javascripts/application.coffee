@@ -11,13 +11,12 @@
 # about supported directives.
 #
 #= require rails-ujs
-#= require turbolinks
 #= require jquery
 #= require rails-ujs
 #= require bootstrap-sprockets
 #= require_tree .
 
-$.ready ->
-  console.info 'sfdsf'      
-  $('.nav-tabs a:first').tab('show')
+$(document).ready ->
+  $('#first-tab').tab('show')
+
           

@@ -1,28 +1,33 @@
 #content
   .col-md-4
     h1 Dibook. Read a book!
-    ul.nav.nav-tabs
-      li
-        a href="#link" role='tab' Link 
-      li.active
-        a href="#text" role='tab' Text
-      li
-        a href="#file" role='tab' File
 
-    div.tab-content
-        div.tab-pane.fade role="tabpanel id="link"
-          = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
-            .form-group
+    div  
+      ul.nav.nav-tabs
+        li.active
+          a href="#link" role='tab' data-toggle='tab' Link
+        li
+          a href="#text" role='tab' data-toggle='tab' Text
+        li
+          a href="#file" role='tab' data-toggle='tab' File
+
+      .tab-content
+        .tab-pane.in role="tabpanel" id="link"
+          .form-group
+            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
               = f.text_field :source_uri, class: 'form-control input-lg', placeholder: 'Link to text, ePub, PDF, ...'
-        div.tab-pane.fade role="tabpanel id="text"
-          .form-group
-            = f.textarea :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
-        div.tab-pane.fade role="tabpanel id="file"
-          .form-group
-            = f.textarea :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
 
-    .form-group
-        input.btn.btn-lg.btn-primary type='submit' value='Show me the vocabulary'
+        .tab-pane.fade role="tabpanel" id="text"
+          .form-group
+            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
+              = f.text_area :content, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
+
+        .tab-pane.fade role="tabpanel" id="file"
+          .form-group
+            = form_for @book, class: 'form-vertical', id: 'new-book' do |f|
+              = f.file_field :file, type: :file, class: 'form-control input-lg', placeholder: 'Text you want to analyse'
+
+
 
     p.claim
       b The best word we found so far:

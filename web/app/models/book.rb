@@ -4,7 +4,11 @@ require 'open-uri'
 class Book < ApplicationRecord
 
   include Reader::Utils
-  
+
+  # transient dummy attribute
+  # not implemented
+  attr_reader :file
+
   has_many :placements
   has_many :words, through: :placements
 

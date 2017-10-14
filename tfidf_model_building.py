@@ -34,7 +34,7 @@ def is_a_verb(tag):
         return 'n'
 
 
-file = 'data/eng_wikipedia_2016_100K-sentences.txt'
+file = 'data/eng_wikipedia_2016_1M-sentences.txt'
 with open(file, encoding="utf8") as f:
     read_data = f.read()
 f.close()
@@ -52,14 +52,12 @@ for sen in sentences:
             words.append(wordnet_lemmatizer.lemmatize(i[0], pos=is_a_verb(i[1])))
     texts.append(words)
     # print(words)
-dictionary = corpora.Dictionary(texts)
 
+dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
 # print(corpus)
 tfidf = models.TfidfModel(corpus)
 corpus_tfidf = tfidf[corpus]
-tfidf.save('data/tfidf_100k')
-corpora.MmCorpus.serialize('data/corpus100k.mm', corpus)
-dictionary.save('data/dict100k.dict')
-
-    # dictionary.token2id
+tfidf.save('data/tfidf_1M')
+corpora.MmCorpus.serialize('data/corpus1M.mm', corpus)
+dictionary.save('data/dict1M.dict')

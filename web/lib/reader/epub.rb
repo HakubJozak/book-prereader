@@ -24,7 +24,7 @@ module Reader
         buffer << page.content_document.nokogiri.search('//text()').map(&:text)
       end
 
-      @content = buffer.text
+      @content = buffer.string
     end
 
     def raw

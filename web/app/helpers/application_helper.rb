@@ -14,6 +14,8 @@ module ApplicationHelper
       'success'
     elsif w.known == false
       'danger'
+    elsif w.known?.nil?
+      'muted'
     end
   end
 end

@@ -3,7 +3,9 @@
   .col-md-2
   .col-md-8
     .page-header
-      h1 Vocabulary of '#{@book.name}'
+      h1 = link_to 'Dibook', root_path
+
+    h2 Vocabulary of '#{@book.name}'
 
     p.lead
       ' You will need those words while reading #{@book.name}.

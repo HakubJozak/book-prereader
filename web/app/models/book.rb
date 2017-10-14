@@ -26,7 +26,14 @@ class Book < ApplicationRecord
       w.tfidf = important_words[w.text_en]
     end
 
-    words.sort { |a,b| b.tfidf <=> a.tfidf }
+    groups = words.group_by(&:known)
+
+
+    [
+      groups[false].sort { |a,b| b.tfidf <=> a.tfidf },
+      groups[nil].sort { |a,b| b.tfidf <=> a.tfidf },
+      groups[true].sort { |a,b| b.tfidf <=> a.tfidf }
+    ].flatten
   end
   
 

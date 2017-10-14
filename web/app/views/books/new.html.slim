@@ -10,6 +10,9 @@
           a href="#text" role='tab' data-toggle='tab' Text
         li
           a href="#file" role='tab' data-toggle='tab' File
+        li
+          a href="#recent" role='tab' data-toggle='tab' 
+            ' Recent Documents
 
       = form_for @book, class: 'form-horizontal', id: 'new-book' do |f|
         .tab-content
@@ -30,12 +33,20 @@
               = f.file_field :file, type: :file, class: 'form-control input-lg', placeholder: 'File you want to analyse'
             .form-group
               = analyze_button(f)
-
+          .tab-pane role="tabpanel" id="recent"
+            ul.recent
+              - Book.find(38,39,40).each do |b|
+                li = link_to b.name, book_path(b)
 
     p.claim
       ' All your words are belong to us!  
       b The best word we have found so far:
       br
       ' oh-what-a-wicked-world-this-is-and-how-i-wish-i-could-do-something
+
+
+
+
+
 
   .col-md-7

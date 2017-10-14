@@ -60,3 +60,7 @@ corpus = [dictionary.doc2bow(text) for text in texts]
 tfidf = models.TfidfModel(corpus)
 corpus_tfidf = tfidf[corpus]
 tfidf.save('tfidf_10k')
+corpora.MmCorpus.serialize('corpus10k.mm', corpus)
+dictionary.save('dict10k.dict')
+
+# dictionary.token2id

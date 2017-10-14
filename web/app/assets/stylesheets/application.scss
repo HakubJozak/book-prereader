@@ -26,30 +26,39 @@ body {
 
 body.books-new {
   background-image: image-url('nohy.jpg');
-}
 
 
-#content {
+  
+  #content {
+      margin-left: 2em;
+      margin-top: 4em;
+      display: flex;
+      align-items: center;
+      min-height: 500px;
+      color: black;
+      font-size: 25px;
 
-  display: flex;
-  align-items: center;
-  min-height: 500px;
-  color: black;
-  font-size: 25px;
+      form#new-book {
+          input {
+              width: 30em;
+              border-radius: 0;
+          }
 
-  form#new-book {
-      input {
-          width: 20em;
-          border-radius: 0;
+          .btn {
+              background-color: #3c763d;
+          }
       }
 
-      .btn {
-          background-color: #3c763d;
-      }
-  }
+      .claim {
+          font-size: 20px;
+          color: grey;
+          text-shadow: 1px 1px 1px white;
+      }  
+  }  
+
 }
 
 
-.claim {
-    font-size: 20px;
-}
+
+
+

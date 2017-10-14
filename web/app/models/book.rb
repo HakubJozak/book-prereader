@@ -12,6 +12,10 @@ class Book < ApplicationRecord
     read_attribute(:name) || 'Untitled'
   end
   
+  def vocabulary
+    placements.includes(:word).limit(100).order(frequency: :asc)    
+  end
+
   def analyze!
     tokens = []
 

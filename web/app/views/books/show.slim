@@ -1,22 +1,19 @@
 
 .fluid
-  .col-md-1
-  .col-md-9
+  .col-md-2
+  .col-md-8
     .page-header
-      h1 Your Vocabulary
+      h1 Vocabulary of '#{@book.name}'
 
-      p.claim
-        ' Learn those words because you will need them to read #{@book.name}
+    p.lead
+      ' You will need words because you will need them to read
 
-      table.table
-        tbody
-          - @book.placements.includes(:word).limit(100).order(frequency: :asc).each.with_index do |p,i|
-            tr
-              th = i
-              td = p.text_en
-              td = p.text_cs
-              td = p.frequency
-
+    table.table.vocabulary
+      tbody
+        - @book.vocabulary.each.with_index do |p,i|
+          tr
+            th = p.text_en
+            td = p.text_cs
 
   .col-md-2
 

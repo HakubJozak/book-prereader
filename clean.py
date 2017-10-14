@@ -1,4 +1,7 @@
+import sys
+import io
 import nltk
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
@@ -44,5 +47,9 @@ def pre_process_text(intput_text):
     return texts
 
 
-t = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-print(pre_process_text(t))
+filename = sys.argv[1]
+
+
+with open(filename,'rt') as f:
+  text = f.read()
+  print(pre_process_text(text)[0])

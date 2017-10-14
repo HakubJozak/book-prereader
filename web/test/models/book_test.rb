@@ -16,6 +16,14 @@ class BookTest < ActiveSupport::TestCase
     b = Book.create(name: 'test', content: @txt)
     assert_not_empty b.tokens
   end
+
+  test 'holmes' do
+    Book.create(source_uri: 'http://www.gutenberg.org/cache/epub/1661/pg1661.txt')
+  end
+
+  test 'alice' do
+    Book.create(source_uri: 'http://www.gutenberg.org/files/11/11-0.txt')
+  end
 end
 
 

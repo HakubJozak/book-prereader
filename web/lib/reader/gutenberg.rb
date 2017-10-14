@@ -3,8 +3,8 @@ require 'open-uri'
 
 module Reader
   class Gutenberg
-    START_REGEXP = %r{^.*\*\*\*START OF THE PROJECT GUTENBERG EBOOK (.*)\*\*\*}
-    END_REGEXP   = %r{^.*\*\*\*END OF THE PROJECT GUTENBERG EBOOK (.*)\*\*\*} 
+    START_REGEXP = %r{^\s*.*\*\*\*\s*START OF .* PROJECT GUTENBERG EBOOK (.*)\*\*\*}
+    END_REGEXP   = %r{^.*\*\*\*\s*END OF .* PROJECT GUTENBERG EBOOK (.*)\*\*\*} 
 
     attr_reader :name, :content
 

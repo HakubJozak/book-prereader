@@ -8,8 +8,15 @@ module Reader
 
     attr_reader :name, :content
 
-    def initialize(uri)
-      @uri = uri
+    def initialize(uri: nil, raw: nil, name: nil)
+      if uri
+        @uri = uri
+      elsif raw
+        @raw = raw
+      else
+        raise 'Supply +uri+ or +raw+'
+      end
+
       parse!
     end
 

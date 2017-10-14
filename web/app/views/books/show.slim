@@ -6,14 +6,26 @@
       h1 Vocabulary of '#{@book.name}'
 
     p.lead
-      ' You will need words because you will need them to read
+      ' You will need those words while reading #{@book.name}.
 
     table.table.vocabulary
+      thead 
+        tr
+          th English
+          th Czech
+          th Do you know this word?
       tbody
         - @book.vocabulary.each.with_index do |p,i|
           tr
             th = p.text_en
             td = p.text_cs
+            td 
+              .btn-group
+                a.btn.btn-success
+                  ' Yes
+
+                a.btn.btn-default
+                  ' No
 
   .col-md-2
 

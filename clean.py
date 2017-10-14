@@ -1,6 +1,7 @@
 import sys
 import io
 import nltk
+import json
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -48,8 +49,10 @@ def pre_process_text(intput_text):
 
 
 filename = sys.argv[1]
+flatten = lambda l: [item for sublist in l for item in sublist]
 
 
 with open(filename,'rt') as f:
   text = f.read()
-  print(pre_process_text(text)[0])
+  strings = flatten(pre_process_text(text))
+  print(json.dumps(strings))

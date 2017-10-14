@@ -1,7 +1,9 @@
 require_relative 'boot'
 
 require 'rails/all'
+require './lib/reader/utils'
 require './lib/reader/gutenberg'
+
 
 
 # Require the gems listed in Gemfile, including any gems

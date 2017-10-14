@@ -4,9 +4,10 @@ require 'open-uri'
 class Book < ApplicationRecord
 
   include Reader::Utils
-  
-  has_many :placements
-  has_many :words, through: :placements
+
+  # transient dummy attribute
+  # not implemented
+  attr_reader :file
 
   before_create :prepare_tokens!
 
@@ -18,18 +19,27 @@ class Book < ApplicationRecord
     placements.includes(:word).limit(100).order(frequency: :asc)    
   end
 
-  def analyze!
-    tokens = []
+  # def analyze!
+  #   tokens = []
 
-    word_count = tokens.size.to_f
+  #   word_count = tokens.size.to_f
+  #   f = tokens.frequency
+
+  #   # Word.where(text_en: self.tokens).all.each do |word|
+  #   #   Placement.create(word: word,
+  #   #                    book: self,
+  #   #                    frequency: f[word.text_en] / word_count)
+  #   # end
+  # end
+  def vocabulary
+    total = tokens.count.to_f
     f = tokens.frequency
 
-    Word.where(text_en: self.tokens).all.each do |word|
-      Placement.create(word: word,
-                       book: self,
-                       frequency: f[word.text_en] / word_count)
+    Word.where(text_en: self.tokens).each do |w|
+      w.frequency = f[w.text_en] / total
     end
   end
+  
 
   private
 
@@ -44,7 +54,7 @@ class Book < ApplicationRecord
   def download_content!
     case source_uri
     when %r{http://www.gutenberg.org/files.*}
-      r = ::Reader::Gutenberg.new(source_uri)
+      r = ::Reader::Gutenberg.new(uri: source_uri)
       self.name = r.name
       self.content = r.content
     else

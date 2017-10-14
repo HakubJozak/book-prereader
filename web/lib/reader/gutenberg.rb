@@ -8,7 +8,7 @@ module Reader
 
     attr_reader :name, :content
 
-    def initialize(uri: nil, raw: nil, name: nil)
+    def initialize(uri: nil, raw: nil)
       if uri
         @uri = uri
       elsif raw

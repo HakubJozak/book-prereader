@@ -3,26 +3,37 @@ require 'open-uri'
 
 class BooksController < ApplicationController
   def new
-    @book = Book.new(source_uri: 'http://www.gutenberg.org/files/308/308-0.txt')
+    @book = Book.new # (source_uri: 'http://www.gutenberg.org/files/308/308-0.txt')
   end
 
   def create
-    @book = Book.create(name: 'Unknown Book',
-                        source_uri: uri)
-
-    @book.analyze!
-    redirect_to @book
+    if uri.present?
+      @book = Book.create(source_uri: uri)
+    elsif content.present?
+      @book = Book.create(content: content)
+      redirect_to @book
+    elsif file.present?
+      flash.error 'Not implemented'
+      redirect_to @book
+    end
   end
 
   def show
     @book = Book.find(params[:id])
-    @words = @book.words
   end
 
   private
 
+  def content
+    book_params[:content]    
+  end
+
   def uri
-    params.require(:book).permit(:source_uri)[:source_uri]
+    book_params[:source_uri]
+  end
+
+  def book_params
+    params.require(:book).permit(:source_uri, :file, :content)
   end
 
   helper_method :body_class

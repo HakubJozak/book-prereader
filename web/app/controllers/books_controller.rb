@@ -27,7 +27,7 @@ class BooksController < ApplicationController
   private
 
   def content
-    book_params[:content]    
+    book_params[:content]
   end
 
   def uri
@@ -35,7 +35,7 @@ class BooksController < ApplicationController
   end
 
   def file
-    book_params[:file]    
+    book_params[:file]
   end
 
   def book_params

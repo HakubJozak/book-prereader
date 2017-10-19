@@ -8,14 +8,18 @@
     h2 Vocabulary of '#{@book.name}'
 
     p.lead
+
+      ' There are #{@book.vocabulary.count} distinct words in
+      b = @book.name
       ' You will need those words while reading #{@book.name}.
 
+
     table.table.vocabulary
-      thead 
+      thead
         tr
           th English
           th Czech
-          / th Definition  
+          / th Definition
           th Importance Rank
           th Frequency
           th Do you know this word?
@@ -24,4 +28,3 @@
           = render 'word', word: w
 
   .col-md-2
-

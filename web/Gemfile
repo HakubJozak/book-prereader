@@ -25,7 +25,8 @@ gem 'epub-parser'
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'capistrano-rails', group: :development  
+  gem 'capistrano-rails', group: :development
+  gem 'mechanize'
 end
 
 group :development do

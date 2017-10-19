@@ -34,7 +34,13 @@ class Book < ApplicationRecord
       sorted(groups[true])
     ].flatten
   end
-  
+
+  def vocabulary
+    @vocabulary ||= Word.where(text_en: tokens).order(google_results: :asc).each do |w|
+      w.tfidf = w.google_results
+    end
+  end
+
 
   private
 

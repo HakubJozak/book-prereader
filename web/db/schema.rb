@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014152741) do
+ActiveRecord::Schema.define(version: 20171017235402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171014152741) do
     t.integer "dictionary_id"
     t.integer "corpus_frequency"
     t.boolean "known"
+    t.bigint "google_results"
   end
 
 end
